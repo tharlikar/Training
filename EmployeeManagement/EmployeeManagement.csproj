@@ -2,7 +2,53 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+	<!-- 
+	see 06. ASP NET Core in process hosting  video
+	&#x2D&#x2D&#x2D&#x2D&#x2D&#x2D&#x2D&#x2D&#x2D&#x2D&#x2D&#x2D
+	To configure InProcess hosting
+	<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+	
+	CreateDefaultBuilder() method calls UseIIS() method
+	and host the app inside of the IIS worker process
+	(w3wp.exe or iisexpress.exe)
+	
+	InProcess hosting delivers significantly higher request 
+	througput than OutOfProcess hosting
+	
+	To get the process name executing the app
+	System.Diagnostics.Process.GetCurrentProcess().ProcessName
+	--> 
+	  <!--
+	  With out of processing hosting
+	  - 2 Web Servers - Internal and External Web Server
+	  - The internal web server is Kestrel
+	  - The external web server can be IIS, Nginx or Apache
+	  
+	  What is Kestrel
+	  - Cross-platform web server for ASP.NET core
+	  - Kestrel can be used by itself as an edge server
+	  - The process used to host the app is dotnet.exe
+	  c:\>dotnet new gitignore
+	  c:\>dotnet &#x2D&#x2Dhelp //xml escape for two hypen in xml comment
+	  c:\>dotnet run
+	  -->
+	  <!--
+	  	  see 07. ASP NET Core out of process hosting video and see 08. ASP NET Core launchsettings json file video
+		  - default is <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>, so we can remove this
+		  C:\Users\tharl\source\repos\Kudvenkat\EmployeeManagement-20220425T144508Z-001\EmployeeManagement\EmployeeManagement>dotnet run
+		  - Kestrel(dotnet run) can be used as the internet facing webserver
+		  - Kestrel can be used in combination with reverse proxy(IIS,Nginx,Apache)
+		  
+		  InProcess hosting name is w3wp.exe or iisexpress.exe
+		  InProcess Only one web server(IIS or IISExpress)
+		  InProcess is better at performance.
+		  
+		  OutOfProcess hosting name is dotnet.exe
+		  OutOfProcess use two server reverse proxy server(IIS,IISExpress,Nginx,Apache) and Kestrel(dotnet.exe)
+		  OutOfProcess has penalty of proxying requessts between internal and external web server.
+		  
+	  -->
+	  <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
     <UserSecretsId>51c0770a-8c88-4362-b3b5-a8936796ecef</UserSecretsId>
   </PropertyGroup>
 

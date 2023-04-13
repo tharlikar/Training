@@ -21,9 +21,15 @@ namespace EmployeeManagement
     {
         private IConfiguration _config;
 
+        /// <summary>
+        /// see 09.ASP NET Core appsettings json file video
+        /// to understand this constructor
+        /// </summary>
+        /// <param name="config"></param>
         public Startup(IConfiguration config)
         {
             _config = config;
+           //use string myKey= _config["MyKey"]; statement to access key,value pair from appsettings.json file
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -110,7 +116,13 @@ namespace EmployeeManagement
                 app.UseExceptionHandler("/Error");
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
             }
-
+            //Will return iisexpress
+            //app.Run(async (context) => 
+            //{
+            //    await context.Response.WriteAsync(System.Diagnostics.Process.GetCurrentProcess().ProcessName);
+            //    09. see ASP NET Core appsettings.json file video
+            //    await context.Response.WriteAsync(_config["MyKey"]);
+            //});
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc(routes =>

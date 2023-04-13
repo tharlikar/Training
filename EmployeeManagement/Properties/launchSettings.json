@@ -8,14 +8,25 @@
     }
   },
   "profiles": {
+    // see 08. ASP NET Core launchsettings json file video
+    //Run Profile1 using iiexpress.exe
+    //it use iisexpress.exe if config is <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel> 
+    //it use iisexpress.exe as reverse proxy external server and dotnet.exe kestrel internal server
+    //if config is <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel> 
     "IIS Express": {
-      "commandName": "IISExpress",
+      "commandName": "IISExpress", //OR "commandName": "IIS",
       "launchBrowser": true,
       "environmentVariables": {
+        //see 09. ASP NET Core appsettings json file video
+        //This is Environment variable
         "MyKey": "Value of MyKey from Environment Variable",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    // see 08. ASP NET Core launchsettings json file video
+    //Run Profile2 using dotnet.exe (Kestrel webserver)
+    //if you run using this profile it will ignore the following project config
+    //<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel> .csproj
     "EmployeeManagement": {
       "commandName": "Project",
       "launchBrowser": true,
